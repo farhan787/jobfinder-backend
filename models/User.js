@@ -23,7 +23,10 @@ class User extends Model {
 					allowNull: false,
 				},
 				skills: DataTypes.STRING,
-				role: DataTypes.INTEGER,
+				role: {
+					type: DataTypes.INTEGER,
+					allowNull: false,
+				},
 			},
 			{ sequelize, modelName: 'User', tableName: 'users' }
 		);
