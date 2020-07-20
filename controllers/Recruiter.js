@@ -1,15 +1,23 @@
 const Recruiter = require('../services/Recruiter');
-const UserRole = require('../config/UserRole');
+const ResponseCodes = require('../config/ResponseCodes');
+const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
 	signup: async (req, res) => {
-		const recruiter = req.body;
-		if (recruiter.role !== UserRole.recruiter)
-			return res
-				.status(400)
-				.send({ msg: 'Role should be 2 for recruiter signup' });
+		const user = req.body;
+		await Recruiter.signup(user);
 
-		await Recruiter.signup(recruiter);
-		res.send('signup done');
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			{},
+			'Signup Successful'
+		);
+		res.status(resData.code).send(resData);
+	},
+
+	login: async (req, res) => {
+		const { email, password } = req.body;
+		const authToken = await Recruiter.login({ email, password });
+		res.header({ authToken }).status(ResponseCodes.success).send();
 	},
 };

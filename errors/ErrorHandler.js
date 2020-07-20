@@ -11,7 +11,7 @@ module.exports = function (err, req, res, next) {
 				err.message,
 				err.status || ResponseCodes.internalServerError
 			);
-			res.status(response.status).send(response);
+			res.status(response.code).send(response);
 			break;
 
 		default:
@@ -19,6 +19,6 @@ module.exports = function (err, req, res, next) {
 				err.message,
 				ResponseCodes.internalServerError
 			);
-			res.status(response.status).send(response);
+			res.status(response.code).send(response);
 	}
 };

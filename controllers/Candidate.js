@@ -12,7 +12,7 @@ module.exports = {
 			{},
 			'Signup Successful'
 		);
-		res.status(resData.status).send(resData);
+		res.status(resData.code).send(resData);
 	},
 
 	login: async (req, res) => {

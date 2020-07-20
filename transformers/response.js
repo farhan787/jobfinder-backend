@@ -15,8 +15,9 @@ module.exports = {
 		};
 	},
 
-	error: (err, status) => {
+	error: (err, code, status = false) => {
 		return {
+			code,
 			error: { message: err },
 			status,
 		};

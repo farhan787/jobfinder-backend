@@ -16,9 +16,9 @@ module.exports = {
 
 	login: async (loginCredentials) => {
 		AuthValidators.validateLoginData(loginCredentials);
-		const user = await EntityExist.userShouldExist(loginCredentials.email);
+		const candidate = await EntityExist.userShouldExist(loginCredentials.email);
 
-		AuthHelper.validatePassword(loginCredentials.password, user.password);
+		AuthHelper.validatePassword(loginCredentials.password, candidate.password);
 		const authToken = AuthHelper.generateAuthToken(user);
 		return authToken;
 	},
