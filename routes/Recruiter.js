@@ -7,5 +7,9 @@ const RecruiterController = require('../controllers/Recruiter');
 router.post('/signup', asyncHandler(RecruiterController.signup));
 router.post('/login', asyncHandler(RecruiterController.login));
 router.get('/', asyncHandler(RecruiterController.getRecruiters));
+router.delete(
+	'/:recruiterId',
+	asyncHandler(RecruiterController.deleteRecruiter)
+);
 
 module.exports = router;

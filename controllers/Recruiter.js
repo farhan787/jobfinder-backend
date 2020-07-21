@@ -12,6 +12,17 @@ module.exports = {
 		res.status(resData.code).send(resData);
 	},
 
+	deleteRecruiter: async (req, res) => {
+		const { recruiterId } = req.params;
+		const recruiter = await Recruiter.deleteRecruiter(recruiterId);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			recruiter,
+			'Recruiter successfully deleted'
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	signup: async (req, res) => {
 		const user = req.body;
 		await Recruiter.signup(user);

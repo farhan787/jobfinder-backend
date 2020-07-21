@@ -21,6 +21,17 @@ module.exports = {
 		res.status(resData.code).send(resData);
 	},
 
+	deleteJob: async (req, res) => {
+		const { jobId } = req.params;
+		const job = await Job.deleteJob(jobId);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			job,
+			'Job successfully deleted'
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	getJobs: async (req, res) => {
 		const jobs = await Job.getAllJobs();
 		const resData = ResponseTransformer.success(ResponseCodes.success, jobs);

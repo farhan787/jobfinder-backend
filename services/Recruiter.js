@@ -9,6 +9,19 @@ const db = require('../models/index');
 const UserModel = db.models.User;
 
 module.exports = {
+	deleteRecruiter: async (recruiterUUID) => {
+		let recruiter = await EntityExist.userShouldExistByUUID(
+			recruiterUUID,
+			UserRole.recruiter
+		);
+		UserModel.destroy({
+			where: { id: recruiter.id, role: UserRole.recruiter },
+		});
+
+		recruiter = _.pick(recruiter, ['uuid', 'name', 'email', 'phone']);
+		return recruiter;
+	},
+
 	getRecruiters: async () => {
 		let recruiters = await UserModel.findAll({
 			where: { role: UserRole.recruiter },

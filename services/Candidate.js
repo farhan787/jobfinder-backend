@@ -10,6 +10,19 @@ const UserModel = db.models.User;
 const JobApplicationModel = db.models.JobApplication;
 
 module.exports = {
+	deleteCandidate: async (candidateUUID) => {
+		let candidate = await EntityExist.userShouldExistByUUID(
+			candidateUUID,
+			UserRole.candidate
+		);
+		UserModel.destroy({
+			where: { id: candidate.id, role: UserRole.candidate },
+		});
+
+		candidate = _.pick(candidate, ['uuid', 'name', 'email', 'phone', 'skills']);
+		return candidate;
+	},
+
 	getCandidates: async () => {
 		let candidates = await UserModel.findAll({
 			where: { role: UserRole.candidate },

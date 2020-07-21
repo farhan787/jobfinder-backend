@@ -10,7 +10,6 @@ module.exports = {
 		const user = await UserModel.findOne({
 			where: { email, role },
 		});
-
 		if (!user) {
 			throw new ApplicationError(
 				Errors.notExist(email).message,
@@ -25,7 +24,6 @@ module.exports = {
 		const user = await UserModel.findOne({
 			where: { email, role },
 		});
-
 		if (user) {
 			throw new ApplicationError(
 				Errors.duplicateError(email).message,
@@ -38,29 +36,25 @@ module.exports = {
 		const user = await UserModel.findOne({
 			where: { uuid, role },
 		});
-
 		if (!user) {
 			throw new ApplicationError(
 				Errors.notExist(uuid).message,
 				Errors.notExist(uuid).status
 			);
 		}
-
 		return user;
 	},
 
-	jobShouldExistByUUID: async (uuid, role) => {
+	jobShouldExistByUUID: async (uuid) => {
 		const job = await JobModel.findOne({
 			where: { uuid },
 		});
-
 		if (!job) {
 			throw new ApplicationError(
 				Errors.notExist(uuid).message,
 				Errors.notExist(uuid).status
 			);
 		}
-
 		return job;
 	},
 };

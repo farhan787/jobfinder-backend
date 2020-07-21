@@ -22,6 +22,16 @@ module.exports = {
 		await JobApplication.create(application);
 	},
 
+	deleteJob: async (jobUUID) => {
+		let job = await EntityExist.jobShouldExistByUUID(jobUUID);
+		JobModel.destroy({
+			where: { id: job.id },
+		});
+
+		job = _.pick(job, ['uuid', 'title', 'description', 'location']);
+		return job;
+	},
+
 	getAllJobs: async () => {
 		let jobs = await JobModel.findAll();
 		jobs = _.map(
