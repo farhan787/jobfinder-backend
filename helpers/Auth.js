@@ -12,14 +12,9 @@ module.exports = {
 		return hashedPassword;
 	},
 
-	decode: async (token) => {
-		const decodedToken = jwt.verify(token, process.env.jwtPrivateKey);
-		console.log(decodedToken);
-	},
-
 	generateAuthToken: async (user) => {
 		const authToken = jwt.sign(
-			{ id: user.id, email: user.email, role: user.role },
+			{ uuid: user.uuid, role: user.role },
 			process.env.jwtPrivateKey
 		);
 		return authToken;
@@ -32,8 +27,6 @@ module.exports = {
 		);
 
 		if (!validPassword) {
-			console.log('global error handler not working for this');
-			console.log('valid password ', validPassword);
 			throw new ApplicationError(
 				Errors.invalidPassword().message,
 				Errors.invalidPassword().status

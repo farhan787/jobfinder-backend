@@ -3,6 +3,25 @@ const ResponseCodes = require('../config/ResponseCodes');
 const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
+	getCandidates: async (req, res) => {
+		const candidates = await Candidate.getCandidates();
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			candidates
+		);
+		res.status(resData.code).send(resData);
+	},
+
+	getJobCandidates: async (req, res) => {
+		const { jobId } = req.params;
+		const candidates = await Candidate.getJobCandidates(jobId);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			candidates
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	signup: async (req, res) => {
 		const user = req.body;
 		await Candidate.signup(user);

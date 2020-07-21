@@ -3,6 +3,15 @@ const ResponseCodes = require('../config/ResponseCodes');
 const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
+	getRecruiters: async (req, res) => {
+		const recruiters = await Recruiter.getRecruiters();
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			recruiters
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	signup: async (req, res) => {
 		const user = req.body;
 		await Recruiter.signup(user);

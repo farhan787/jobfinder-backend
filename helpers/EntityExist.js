@@ -3,11 +3,12 @@ const Errors = require('../errors/Errors');
 
 const db = require('../models/index');
 const UserModel = db.models.User;
+const JobModel = db.models.Job;
 
 module.exports = {
-	userShouldExist: async (email) => {
+	userShouldExist: async (email, role) => {
 		const user = await UserModel.findOne({
-			where: { email: email },
+			where: { email, role },
 		});
 
 		if (!user) {
@@ -20,9 +21,9 @@ module.exports = {
 		return user;
 	},
 
-	userShouldNotExist: async (email) => {
+	userShouldNotExist: async (email, role) => {
 		const user = await UserModel.findOne({
-			where: { email: email },
+			where: { email, role },
 		});
 
 		if (user) {
@@ -31,5 +32,35 @@ module.exports = {
 				Errors.duplicateError(email).status
 			);
 		}
+	},
+
+	userShouldExistByUUID: async (uuid, role) => {
+		const user = await UserModel.findOne({
+			where: { uuid, role },
+		});
+
+		if (!user) {
+			throw new ApplicationError(
+				Errors.notExist(uuid).message,
+				Errors.notExist(uuid).status
+			);
+		}
+
+		return user;
+	},
+
+	jobShouldExistByUUID: async (uuid, role) => {
+		const job = await JobModel.findOne({
+			where: { uuid },
+		});
+
+		if (!job) {
+			throw new ApplicationError(
+				Errors.notExist(uuid).message,
+				Errors.notExist(uuid).status
+			);
+		}
+
+		return job;
 	},
 };

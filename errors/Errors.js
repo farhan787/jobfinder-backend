@@ -8,6 +8,20 @@ module.exports = {
 		};
 	},
 
+	invalidRole: (correctRole) => {
+		return {
+			message: `invalid role: role should be ${correctRole}`,
+			status: ResponseCodes.badRequest,
+		};
+	},
+
+	invalidPassword: () => {
+		return {
+			message: `invalid password`,
+			status: ResponseCodes.badRequest,
+		};
+	},
+
 	notExist: (entity) => {
 		return {
 			message: `${entity} does not exist`,
@@ -15,9 +29,9 @@ module.exports = {
 		};
 	},
 
-	invalidPassword: () => {
+	noAuthToken: () => {
 		return {
-			message: `invalid password`,
+			message: `authToken is missing in request header`,
 			status: ResponseCodes.badRequest,
 		};
 	},

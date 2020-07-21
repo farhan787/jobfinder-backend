@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 
+const Auth = require('../middlewares/Auth');
 const JobController = require('../controllers/Job');
 
-router.get('/', asyncHandler(JobController.getAllJobs));
-router.post('/:recruiterId', asyncHandler(JobController.postJob));
-router.delete('/:jobId', asyncHandler(JobController.deleteJob));
+router.get('/', asyncHandler(JobController.getJobs));
+router.post('/', Auth, asyncHandler(JobController.postJob));
+router.post('/apply/:jobId', Auth, asyncHandler(JobController.applyToJob));
 
 module.exports = router;
