@@ -4,6 +4,7 @@ const EntityExist = require('../helpers/EntityExist');
 const AuthHelper = require('../helpers/Auth');
 const userRoleValidator = require('../validators/RoleValidator');
 const UserRole = require('../config/UserRole');
+const paginationHelper = require('../helpers/PaginationHelper');
 
 const db = require('../models/index');
 
@@ -45,9 +46,13 @@ module.exports = {
 		return recruiter;
 	},
 
-	getRecruiters: async () => {
+	getRecruiters: async (paginationData) => {
+		const { limit, offset } = paginationHelper(paginationData);
+
 		let recruiters = await UserModel.findAll({
 			where: { role: UserRole.recruiter },
+			limit,
+			offset,
 		});
 		recruiters = _.map(
 			recruiters,

@@ -1,0 +1,83 @@
+[
+	{
+		"name": "candidate1",
+		"email": "candidate1@gmail.com",
+		"password": "candidate1",
+		"phone": "9384855245",
+		"skills": "html, c++, js",
+		"role": 3
+	},
+	{
+		"name": "candidate2",
+		"email": "candidate2@gmail.com",
+		"password": "candidate2",
+		"phone": "9248285239",
+		"skills": "python, c++, java",
+		"role": 3
+	},
+	{
+		"name": "candidate3",
+		"email": "candidate3@gmail.com",
+		"password": "candidate3",
+		"phone": "3464256245",
+		"skills": "c#, devops, db, os",
+		"role": 3
+	},
+	{
+		"name": "candidate4",
+		"email": "candidate4@gmail.com",
+		"password": "candidate4",
+		"phone": "895398245",
+		"skills": "dsa, system design, oops",
+		"role": 3
+	},
+
+	{
+		"name": "recruiter1",
+		"email": "recruiter1@gmail.com",
+		"password": "recruiter1",
+		"phone": "84758824",
+		"role": 2
+	},
+	{
+		"name": "recruiter2",
+		"email": "recruiter2@gmail.com",
+		"password": "recruiter2",
+		"phone": "73898358",
+		"role": 2
+	},
+	{
+		"name": "recruiter3",
+		"email": "recruiter3@gmail.com",
+		"password": "recruiter3",
+		"phone": "43624526",
+		"role": 2
+	},
+
+	{
+		"title": "Software Developer Intern",
+		"description": "Candidate should have a good understanding of Computer Science fundamentals",
+		"location": "Remote"
+	},
+	{
+		"title": "Senior SDE",
+		"description": "Experience in building complex large scale systems",
+		"location": "London(UK)"
+	},
+	{
+		"title": "SDE 1",
+		"description": "Strong problem solving and analysing skills, DSA, OOPS, DBMS, OS",
+		"location": "Hyderabad(India)"
+	},
+
+	{
+		"type": "authTokens",
+
+		"admin1": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNWYzYzYyZDktNGMwYy00M2Q5LWIzMTAtYTY5ZDg4ZTMwM2FiIiwicm9sZSI6MSwiaWF0IjoxNTk1MzY2MjkxfQ.VJ317-kX_w1wTKUst6o4uJleCmdKrMvhk9slefuQpFY",
+
+		"recruiter2": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZWM4YzdjYzMtYzcyMS00MmE5LWJjMDQtMDU3ZmEyNTA3YWZiIiwicm9sZSI6MiwiaWF0IjoxNTk1MzY2MjAyfQ.QAk6WIjOXfXvBpoaTMqSOokrYSoF8AfPguTgpdzPPas",
+
+		"candidate1": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNTQ3OTM0NjEtYzM2Ni00NzlmLTg0NGMtMTg4YzBkYmM0NTFjIiwicm9sZSI6MywiaWF0IjoxNTk1MzYyNjU0fQ.gk9l_5raYUIXvtJt3Yz3yr6QVMoJy-vaAxSnAB2RX7U",
+		"candidate2": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZDA4YmM2ZDQtMmQ5Mi00OTdkLWJjMTMtZDYzMjFjYzcwNGJhIiwicm9sZSI6MywiaWF0IjoxNTk1MzYyNjE0fQ.jPw94FnuZgrqPFYPCd5M0I5wbQq3FTWridP9S4O22dI"
+	}
+]

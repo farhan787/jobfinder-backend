@@ -4,7 +4,9 @@ const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
 	getRecruiters: async (req, res) => {
-		const recruiters = await Recruiter.getRecruiters();
+		const { page, limit } = req.query;
+
+		const recruiters = await Recruiter.getRecruiters({ page, limit });
 		const resData = ResponseTransformer.success(
 			ResponseCodes.success,
 			recruiters

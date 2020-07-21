@@ -3,6 +3,7 @@ const _ = require('lodash');
 const db = require('../models/index');
 const JobValidators = require('../validators/JobValidators');
 const EntityExist = require('../helpers/EntityExist');
+const paginationHelper = require('../helpers/PaginationHelper');
 
 const JobModel = db.models.Job;
 const JobApplication = db.models.JobApplication;
@@ -45,8 +46,10 @@ module.exports = {
 		return job;
 	},
 
-	getAllJobs: async () => {
-		let jobs = await JobModel.findAll();
+	getAllJobs: async (paginationData) => {
+		const { limit, offset } = paginationHelper(paginationData);
+
+		let jobs = await JobModel.findAll({ limit, offset });
 		jobs = _.map(
 			jobs,
 			_.partialRight(_.pick, ['title', 'description', 'location'])

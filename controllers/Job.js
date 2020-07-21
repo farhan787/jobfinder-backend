@@ -33,7 +33,9 @@ module.exports = {
 	},
 
 	getJobs: async (req, res) => {
-		const jobs = await Job.getAllJobs();
+		const { page, limit } = req.query;
+
+		const jobs = await Job.getAllJobs({ page, limit });
 		const resData = ResponseTransformer.success(ResponseCodes.success, jobs);
 		res.status(resData.code).send(resData);
 	},

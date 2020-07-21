@@ -15,7 +15,9 @@ module.exports = {
 	},
 
 	getCandidates: async (req, res) => {
-		const candidates = await Candidate.getCandidates();
+		const { page, limit } = req.query;
+
+		const candidates = await Candidate.getCandidates({ page, limit });
 		const resData = ResponseTransformer.success(
 			ResponseCodes.success,
 			candidates
