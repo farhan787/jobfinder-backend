@@ -2,14 +2,26 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 
+const Auth = require('../middlewares/Auth');
+const AdminAuth = require('../middlewares/Admin');
+const RecruiterAuth = require('../middlewares/Recruiter');
 const CandidateController = require('../controllers/Candidate');
 
 router.post('/signup', asyncHandler(CandidateController.signup));
 router.post('/login', asyncHandler(CandidateController.login));
-router.get('/:jobId', asyncHandler(CandidateController.getJobCandidates));
-router.get('/', asyncHandler(CandidateController.getCandidates));
+router.get(
+	'/:jobId',
+	[Auth, RecruiterAuth],
+	asyncHandler(CandidateController.getJobCandidates)
+);
+router.get(
+	'/',
+	[Auth, AdminAuth],
+	asyncHandler(CandidateController.getCandidates)
+);
 router.delete(
 	'/:candidateId',
+	[Auth, AdminAuth],
 	asyncHandler(CandidateController.deleteCandidate)
 );
 

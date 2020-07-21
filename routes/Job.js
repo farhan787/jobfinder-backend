@@ -3,11 +3,14 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler');
 
 const Auth = require('../middlewares/Auth');
+const Admin = require('../middlewares/Admin');
+const RecruiterAuth = require('../middlewares/Recruiter');
+
 const JobController = require('../controllers/Job');
 
-router.get('/', asyncHandler(JobController.getJobs));
-router.post('/', Auth, asyncHandler(JobController.postJob));
+router.get('/', Auth, asyncHandler(JobController.getJobs));
+router.post('/', [Auth, RecruiterAuth], asyncHandler(JobController.postJob));
 router.post('/apply/:jobId', Auth, asyncHandler(JobController.applyToJob));
-router.delete('/:jobId', asyncHandler(JobController.deleteJob));
+router.delete('/:jobId', [Auth, Admin], asyncHandler(JobController.deleteJob));
 
 module.exports = router;
