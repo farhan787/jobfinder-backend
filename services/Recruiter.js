@@ -6,7 +6,10 @@ const userRoleValidator = require('../validators/RoleValidator');
 const UserRole = require('../config/UserRole');
 
 const db = require('../models/index');
+
 const UserModel = db.models.User;
+const JobModel = db.models.Job;
+const JobApplicationModel = db.models.JobApplication;
 
 module.exports = {
 	deleteRecruiter: async (recruiterUUID) => {
@@ -14,8 +17,28 @@ module.exports = {
 			recruiterUUID,
 			UserRole.recruiter
 		);
-		UserModel.destroy({
-			where: { id: recruiter.id, role: UserRole.recruiter },
+
+		await db.transaction(async (t) => {
+			const jobsPostedByRecruiter = await JobModel.findAll({
+				where: { recruiter_id: recruiter.id },
+				transaction: t,
+			});
+			const jobIds = jobsPostedByRecruiter.map((job) => job.id);
+
+			await JobModel.destroy({
+				where: { id: jobIds },
+				transaction: t,
+			});
+
+			await JobApplicationModel.destroy({
+				where: { job_id: jobIds },
+				transaction: t,
+			});
+
+			await UserModel.destroy({
+				where: { id: recruiter.id, role: UserRole.recruiter },
+				transaction: t,
+			});
 		});
 
 		recruiter = _.pick(recruiter, ['uuid', 'name', 'email', 'phone']);

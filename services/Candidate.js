@@ -15,8 +15,17 @@ module.exports = {
 			candidateUUID,
 			UserRole.candidate
 		);
-		UserModel.destroy({
-			where: { id: candidate.id, role: UserRole.candidate },
+
+		await db.transaction(async (t) => {
+			await JobApplicationModel.destroy({
+				where: { candidate_id: candidate.id },
+				transaction: t,
+			});
+
+			await UserModel.destroy({
+				where: { id: candidate.id },
+				transaction: t,
+			});
 		});
 
 		candidate = _.pick(candidate, ['uuid', 'name', 'email', 'phone', 'skills']);
