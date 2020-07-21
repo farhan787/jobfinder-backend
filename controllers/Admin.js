@@ -1,13 +1,23 @@
 const Admin = require('../services/Admin');
-const UserRole = require('../config/UserRole');
+const ResponseCodes = require('../config/ResponseCodes');
+const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
 	signup: async (req, res) => {
 		const admin = req.body;
-		if (admin.role !== UserRole.admin)
-			return res.status(400).send({ msg: 'Role should be 1 for admin signup' });
-
 		await Admin.signup(admin);
-		res.send('signup done');
+
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			{},
+			'Signup Successful'
+		);
+		res.status(resData.code).send(resData);
+	},
+
+	login: async (req, res) => {
+		const { email, password } = req.body;
+		const authToken = await Admin.login({ email, password });
+		res.header({ authToken }).status(ResponseCodes.success).send();
 	},
 };

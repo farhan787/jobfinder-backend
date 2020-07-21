@@ -4,6 +4,7 @@ const Errors = require('../errors/Errors');
 const db = require('../models/index');
 const UserModel = db.models.User;
 const JobModel = db.models.Job;
+const JobApplicationModel = db.models.JobApplication;
 
 module.exports = {
 	userShouldExist: async (email, role) => {
@@ -45,6 +46,19 @@ module.exports = {
 		return user;
 	},
 
+	jobApplicationShouldNotExist: async (jobId, candidateId) => {
+		const jobApplication = await JobApplicationModel.findOne({
+			where: { job_id: jobId, candidate_id: candidateId },
+		});
+
+		if (jobApplication) {
+			throw new ApplicationError(
+				Errors.duplicateError('job application').message,
+				Errors.duplicateError().status
+			);
+		}
+	},
+
 	jobShouldExistByUUID: async (uuid) => {
 		const job = await JobModel.findOne({
 			where: { uuid },
@@ -56,5 +70,18 @@ module.exports = {
 			);
 		}
 		return job;
+	},
+
+	jobShouldNotExist: async (jobData) => {
+		const job = await JobModel.findOne({
+			where: { title: jobData.title, recruiter_id: jobData.recruiter_id },
+		});
+
+		if (job) {
+			throw new ApplicationError(
+				Errors.duplicateError('job').message,
+				Errors.duplicateError().status
+			);
+		}
 	},
 };

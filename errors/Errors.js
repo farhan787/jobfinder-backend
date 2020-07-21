@@ -1,6 +1,10 @@
 const ResponseCodes = require('../config/ResponseCodes');
 
 module.exports = {
+	accessDenied: () => {
+		return { message: `Access denied`, status: ResponseCodes.forbidden };
+	},
+
 	duplicateError: (entity) => {
 		return {
 			message: `${entity} already exist`,

@@ -19,13 +19,26 @@ module.exports = {
 			job_id: jobData.id,
 			candidate_id: candidateData.id,
 		};
+		await EntityExist.jobApplicationShouldNotExist(
+			jobData.id,
+			candidateData.id
+		);
 		await JobApplication.create(application);
 	},
 
 	deleteJob: async (jobUUID) => {
 		let job = await EntityExist.jobShouldExistByUUID(jobUUID);
-		JobModel.destroy({
-			where: { id: job.id },
+
+		await db.transaction(async (t) => {
+			await JobApplication.destroy({
+				where: { job_id: job.id },
+				transaction: t,
+			});
+
+			await JobModel.destroy({
+				where: { id: job.id },
+				transaction: t,
+			});
 		});
 
 		job = _.pick(job, ['uuid', 'title', 'description', 'location']);
@@ -47,6 +60,8 @@ module.exports = {
 			recruiter.role
 		);
 		job.recruiter_id = recruiterData.id;
+
+		await EntityExist.jobShouldNotExist(job);
 
 		JobValidators.jobPostData(job);
 		await JobModel.create(job);
