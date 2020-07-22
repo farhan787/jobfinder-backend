@@ -40,6 +40,9 @@ module.exports = {
 	login: async (req, res) => {
 		const { email, password } = req.body;
 		const authToken = await Recruiter.login({ email, password });
-		res.header({ authToken }).status(ResponseCodes.success).send();
+		const resData = ResponseTransformer.success(ResponseCodes.success, {
+			authToken,
+		});
+		res.status(resData.code).send(resData);
 	},
 };
