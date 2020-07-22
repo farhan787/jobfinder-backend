@@ -95,7 +95,8 @@ module.exports = {
 
 		await AuthHelper.validatePassword(
 			loginCredentials.password,
-			recruiter.password
+			recruiter.password,
+			loginCredentials.email
 		);
 		const authToken = AuthHelper.generateAuthToken(recruiter);
 		return authToken;

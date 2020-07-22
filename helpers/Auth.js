@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const ApplicationError = require('../errors/ApplicationError');
 const Errors = require('../errors/Errors');
+const logger = require('../helpers/Logger');
 
 module.exports = {
 	hashPassword: async (password) => {
@@ -20,13 +21,15 @@ module.exports = {
 		return authToken;
 	},
 
-	validatePassword: async (passwordToVerify, actualPassword) => {
+	validatePassword: async (passwordToVerify, actualPassword, email) => {
 		const validPassword = await bcrypt.compare(
 			passwordToVerify,
 			actualPassword
 		);
 
 		if (!validPassword) {
+			logger.log('info', `login failed for ${email}`);
+
 			throw new ApplicationError(
 				Errors.invalidPassword().message,
 				Errors.invalidPassword().status

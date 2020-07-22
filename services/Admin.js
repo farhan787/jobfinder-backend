@@ -17,7 +17,8 @@ module.exports = {
 
 		await AuthHelper.validatePassword(
 			loginCredentials.password,
-			admin.password
+			admin.password,
+			loginCredentials.email
 		);
 		const authToken = AuthHelper.generateAuthToken(admin);
 		return authToken;

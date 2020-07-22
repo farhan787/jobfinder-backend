@@ -125,7 +125,8 @@ module.exports = {
 
 		await AuthHelper.validatePassword(
 			loginCredentials.password,
-			candidate.password
+			candidate.password,
+			loginCredentials.email
 		);
 		const authToken = AuthHelper.generateAuthToken(candidate);
 		return authToken;
