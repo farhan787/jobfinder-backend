@@ -67,6 +67,7 @@ module.exports = {
 		await EntityExist.jobShouldNotExist(job);
 
 		JobValidators.jobPostData(job);
-		await JobModel.create(job);
+		const savedJob = await JobModel.create(job);
+		return savedJob;
 	},
 };
