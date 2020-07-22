@@ -43,7 +43,7 @@ module.exports = {
 		});
 		candidates = _.map(
 			candidates,
-			_.partialRight(_.pick, ['name', 'email', 'phone', 'skills'])
+			_.partialRight(_.pick, ['uuid', 'name', 'email', 'phone', 'skills'])
 		);
 		return candidates;
 	},
@@ -57,7 +57,7 @@ module.exports = {
 		});
 		candidates = _.map(
 			candidates,
-			_.partialRight(_.pick, ['name', 'email', 'phone', 'skills'])
+			_.partialRight(_.pick, ['uuid', 'name', 'email', 'phone', 'skills'])
 		);
 		return candidates;
 	},

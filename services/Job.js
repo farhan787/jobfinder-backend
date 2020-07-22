@@ -52,7 +52,7 @@ module.exports = {
 		let jobs = await JobModel.findAll({ limit, offset });
 		jobs = _.map(
 			jobs,
-			_.partialRight(_.pick, ['title', 'description', 'location'])
+			_.partialRight(_.pick, ['uuid', 'title', 'description', 'location'])
 		);
 		return jobs;
 	},

@@ -56,7 +56,7 @@ module.exports = {
 		});
 		recruiters = _.map(
 			recruiters,
-			_.partialRight(_.pick, ['name', 'email', 'phone'])
+			_.partialRight(_.pick, ['uuid', 'name', 'email', 'phone'])
 		);
 		return recruiters;
 	},
@@ -78,7 +78,10 @@ module.exports = {
 			UserRole.recruiter
 		);
 
-		AuthHelper.validatePassword(loginCredentials.password, recruiter.password);
+		await AuthHelper.validatePassword(
+			loginCredentials.password,
+			recruiter.password
+		);
 		const authToken = AuthHelper.generateAuthToken(recruiter);
 		return authToken;
 	},
