@@ -6,12 +6,33 @@ const EntityExist = require('../helpers/EntityExist');
 const AuthHelper = require('../helpers/Auth');
 const UserRole = require('../config/UserRole');
 const paginationHelper = require('../helpers/PaginationHelper');
-const Job = require('../models/Job');
 
 const UserModel = db.models.User;
+const JobModel = db.models.Job;
 const JobApplicationModel = db.models.JobApplication;
 
 module.exports = {
+	availableJobs: async (candidateUUID) => {
+		const candidate = await EntityExist.userShouldExistByUUID(
+			candidateUUID,
+			UserRole.candidate
+		);
+
+		const jobApplications = await JobApplicationModel.findAll({
+			where: { candidate_id: candidate.id },
+		});
+		const jobApplicationIds = jobApplications.map(
+			(application) => application.job_id
+		);
+		const availableJobs = await JobModel.findAll({
+			attributes: ['uuid', 'title', 'description', 'location'],
+			where: {
+				id: { [db.Sequelize.Op.notIn]: jobApplicationIds },
+			},
+		});
+		return availableJobs;
+	},
+
 	deleteCandidate: async (candidateUUID) => {
 		let candidate = await EntityExist.userShouldExistByUUID(
 			candidateUUID,
@@ -46,7 +67,7 @@ module.exports = {
 		const appliedJobIds = appliedJobApplications.map(
 			(application) => application.job_id
 		);
-		let appliedJobs = await Job.findAll({
+		let appliedJobs = await JobModel.findAll({
 			where: { id: [appliedJobIds] },
 		});
 		appliedJobs = _.map(

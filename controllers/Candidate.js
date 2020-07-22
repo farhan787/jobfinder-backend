@@ -3,6 +3,16 @@ const ResponseCodes = require('../config/ResponseCodes');
 const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
+	availableJobs: async (req, res) => {
+		const candidate = req.user;
+		const availableJobs = await Candidate.availableJobs(candidate.uuid);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			availableJobs
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	deleteCandidate: async (req, res) => {
 		const { candidateId } = req.params;
 		const candidate = await Candidate.deleteCandidate(candidateId);
