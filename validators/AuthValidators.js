@@ -1,6 +1,8 @@
 const ApplicationError = require('../errors/ApplicationError');
 const ResponseCodes = require('../config/ResponseCodes');
 
+const MIN_PASSWORD_LENGTH = 6;
+
 module.exports = {
 	validateSignupData: (signupData) => {
 		const { name, email, password, role } = signupData;
@@ -22,6 +24,14 @@ module.exports = {
 				ResponseCodes.badRequest
 			);
 		}
+
+		if (password.length < MIN_PASSWORD_LENGTH) {
+			throw new ApplicationError(
+				'password length should be at least 6',
+				ResponseCodes.badRequest
+			);
+		}
+
 		if (!role) {
 			throw new ApplicationError(
 				'role is missing from request body',
