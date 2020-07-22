@@ -23,7 +23,7 @@ router.get(
 
 router.get(
 	'/:jobId',
-	[Auth, AllowAccess([UserRole.recruiter])],
+	[Auth, AllowAccess([UserRole.admin, UserRole.recruiter])],
 	asyncHandler(CandidateController.getJobCandidates)
 );
 
