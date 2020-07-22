@@ -72,6 +72,20 @@ module.exports = {
 		return job;
 	},
 
+	jobShouldBelongToRecruiter: async (jobUUID, recruiterId) => {
+		const job = await JobModel.findOne({
+			where: { uuid: jobUUID },
+		});
+
+		if (job.recruiter_id !== recruiterId) {
+			throw new ApplicationError(
+				Errors.accessDenied().message,
+				Errors.accessDenied().status
+			);
+		}
+		return job;
+	},
+
 	jobShouldNotExist: async (jobData) => {
 		const job = await JobModel.findOne({
 			where: { title: jobData.title, recruiter_id: jobData.recruiter_id },

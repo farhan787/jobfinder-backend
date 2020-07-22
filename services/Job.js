@@ -4,6 +4,7 @@ const db = require('../models/index');
 const JobValidators = require('../validators/JobValidators');
 const EntityExist = require('../helpers/EntityExist');
 const paginationHelper = require('../helpers/PaginationHelper');
+const UserRole = require('../config/UserRole');
 
 const JobModel = db.models.Job;
 const JobApplication = db.models.JobApplication;
@@ -27,8 +28,15 @@ module.exports = {
 		await JobApplication.create(application);
 	},
 
-	deleteJob: async (jobUUID) => {
-		let job = await EntityExist.jobShouldExistByUUID(jobUUID);
+	deleteJob: async (jobUUID, recruiterUUID) => {
+		const recruiter = await EntityExist.userShouldExistByUUID(
+			recruiterUUID,
+			UserRole.recruiter
+		);
+		let job = await EntityExist.jobShouldBelongToRecruiter(
+			jobUUID,
+			recruiter.id
+		);
 
 		await db.transaction(async (t) => {
 			await JobApplication.destroy({

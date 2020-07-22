@@ -23,7 +23,9 @@ module.exports = {
 
 	deleteJob: async (req, res) => {
 		const { jobId } = req.params;
-		const job = await Job.deleteJob(jobId);
+		const recruiter = req.user;
+
+		const job = await Job.deleteJob(jobId, recruiter.uuid);
 		const resData = ResponseTransformer.success(
 			ResponseCodes.success,
 			job,
