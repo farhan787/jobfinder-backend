@@ -46,6 +46,21 @@ module.exports = {
 		return recruiter;
 	},
 
+	getPostedJobs: async (recruiter) => {
+		const recruiterData = await EntityExist.userShouldExistByUUID(
+			recruiter.uuid,
+			UserRole.recruiter
+		);
+		let postedJobs = await JobModel.findAll({
+			where: { recruiter_id: recruiterData.id },
+		});
+		postedJobs = _.map(
+			postedJobs,
+			_.partialRight(_.pick, ['uuid', 'title', 'description', 'location'])
+		);
+		return postedJobs;
+	},
+
 	getRecruiters: async (paginationData) => {
 		const { limit, offset } = paginationHelper(paginationData);
 

@@ -3,6 +3,16 @@ const ResponseCodes = require('../config/ResponseCodes');
 const ResponseTransformer = require('../transformers/response');
 
 module.exports = {
+	getPostedJobs: async (req, res) => {
+		const recruiter = req.user;
+		const postedJobs = await Recruiter.getPostedJobs(recruiter);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			postedJobs
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	getRecruiters: async (req, res) => {
 		const { page, limit } = req.query;
 
