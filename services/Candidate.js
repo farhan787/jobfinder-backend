@@ -6,6 +6,7 @@ const EntityExist = require('../helpers/EntityExist');
 const AuthHelper = require('../helpers/Auth');
 const UserRole = require('../config/UserRole');
 const paginationHelper = require('../helpers/PaginationHelper');
+const Job = require('../models/Job');
 
 const UserModel = db.models.User;
 const JobApplicationModel = db.models.JobApplication;
@@ -31,6 +32,28 @@ module.exports = {
 
 		candidate = _.pick(candidate, ['uuid', 'name', 'email', 'phone', 'skills']);
 		return candidate;
+	},
+
+	getAppliedJobs: async (candidateUUID) => {
+		const candidate = await EntityExist.userShouldExistByUUID(
+			candidateUUID,
+			UserRole.candidate
+		);
+
+		let appliedJobApplications = await JobApplicationModel.findAll({
+			where: { candidate_id: candidate.id },
+		});
+		const appliedJobIds = appliedJobApplications.map(
+			(application) => application.job_id
+		);
+		let appliedJobs = await Job.findAll({
+			where: { id: [appliedJobIds] },
+		});
+		appliedJobs = _.map(
+			appliedJobs,
+			_.partialRight(_.pick, ['uuid', 'title', 'description', 'location'])
+		);
+		return appliedJobs;
 	},
 
 	getCandidates: async (paginationData) => {

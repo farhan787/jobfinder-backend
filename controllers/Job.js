@@ -45,16 +45,10 @@ module.exports = {
 		const recruiter = req.user;
 
 		const savedJob = await Job.postJob(job, recruiter);
-		console.log(savedJob);
 		const resData = ResponseTransformer.success(
 			ResponseCodes.success,
 			{
-				savedJob: _.pick(savedJob, [
-					'uuid',
-					'title',
-					'description',
-					'location',
-				]),
+				job: _.pick(savedJob, ['uuid', 'title', 'description', 'location']),
 				recruiter,
 			},
 			'Job posted successfully'
