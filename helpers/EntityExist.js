@@ -76,6 +76,12 @@ module.exports = {
 		const job = await JobModel.findOne({
 			where: { uuid: jobUUID },
 		});
+		if (!job) {
+			throw new ApplicationError(
+				Errors.notExist(jobUUID).message,
+				Errors.notExist(jobUUID).status
+			);
+		}
 
 		if (job.recruiter_id !== recruiterId) {
 			throw new ApplicationError(
