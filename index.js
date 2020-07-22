@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const helmet = require('helmet')
 const rateLimit = require('express-rate-limit');
 
 const ErrorHandler = require('./errors/ErrorHandler');
@@ -22,7 +23,15 @@ const requestLimiter = rateLimit({
 });
 
 app.use(cors());
+app.use(helmet());
 app.use(requestLimiter);
+
+app.get('/*', function (req, res, next) {
+	res.header('X-XSS-Protection', 1);
+	res.header('X-Content-Type-Options', 'nosniff');
+	res.header('X-Frame-Options', 'DENY');
+	next();
+});
 
 require('./startup/routes')(app);
 app.use(ErrorHandler);
