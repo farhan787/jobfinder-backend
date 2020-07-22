@@ -28,9 +28,31 @@ module.exports = {
 		await JobApplication.create(application);
 	},
 
-	deleteJob: async (jobUUID, recruiterUUID) => {
+	deleteJob: async (jobUUID, user) => {
+		if (user.role == UserRole.admin) {
+			const admin = await EntityExist.userShouldExistByUUID(
+				user.uuid,
+				UserRole.admin
+			);
+
+			let job = await EntityExist.jobShouldExistByUUID(jobUUID);
+			await db.transaction(async (t) => {
+				await JobApplication.destroy({
+					where: { job_id: job.id },
+					transaction: t,
+				});
+
+				await JobModel.destroy({
+					where: { id: job.id },
+					transaction: t,
+				});
+			});
+			job = _.pick(job, ['uuid', 'title', 'description', 'location']);
+			return job;
+		}
+
 		const recruiter = await EntityExist.userShouldExistByUUID(
-			recruiterUUID,
+			user.uuid,
 			UserRole.recruiter
 		);
 		let job = await EntityExist.jobShouldBelongToRecruiter(

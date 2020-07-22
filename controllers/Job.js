@@ -14,7 +14,6 @@ module.exports = {
 			ResponseCodes.success,
 			{
 				jobId,
-				candidate,
 			},
 			'Applied to job successfully'
 		);
@@ -23,9 +22,9 @@ module.exports = {
 
 	deleteJob: async (req, res) => {
 		const { jobId } = req.params;
-		const recruiter = req.user;
+		const user = req.user;
 
-		const job = await Job.deleteJob(jobId, recruiter.uuid);
+		const job = await Job.deleteJob(jobId, user);
 		const resData = ResponseTransformer.success(
 			ResponseCodes.success,
 			job,
@@ -51,7 +50,6 @@ module.exports = {
 			ResponseCodes.success,
 			{
 				job: _.pick(savedJob, ['uuid', 'title', 'description', 'location']),
-				recruiter,
 			},
 			'Job posted successfully'
 		);
