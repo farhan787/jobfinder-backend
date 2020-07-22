@@ -6,448 +6,554 @@
 	},
 	"item": [
 		{
-			"name": "Recruiter Signup",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"recruiter3\",\n    \"email\": \"recruiter3@gmail.com\",\n    \"password\": \"recruiter3\",\n    \"phone\": \"75635346\",\n    \"role\": 2\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Recruiter",
+			"item": [
+				{
+					"name": "Recruiter Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"recruiter3\",\n    \"email\": \"recruiter3@gmail.com\",\n    \"password\": \"recruiter3\",\n    \"phone\": \"75635346\",\n    \"role\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/recruiters/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"recruiters",
+								"signup"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5000/api/v1/recruiters/signup",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"recruiters",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recruiter Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"recruiter1@gmail.com\",\n    \"password\": \"recruiter1\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Recruiter Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"recruiter2@gmail.com\",\n    \"password\": \"recruiter2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/recruiters/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"recruiters",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5000/api/v1/recruiters/login",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"recruiters",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recruiter Posting a Job",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNzNjYzhhYmEtMzBhMS00OTAzLWI2NmMtNjQzODBjMjkzY2U4Iiwicm9sZSI6MiwiaWF0IjoxNTk1MzkxMjQxfQ.QSevmyzgniYsuc7gURLcQJgLObh86tDhEKqvrGI7XDU",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"title\": \"Software Developer Intern\",\n    \"description\": \"Candidate should have a good understanding of Computer Science fundamentals\",\n    \"location\": \"Remote\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Recruiter Posting a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOWVmMGRjN2MtOGY0NS00YTk2LTg5N2ItNTgwYjM3MGI5YWRkIiwicm9sZSI6MiwiaWF0IjoxNTk1NDAzODEzfQ.XxKdTT3NThIOss28jL2xTFf6gefdL3LOXJpSH1aiXvM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"title\": \"SDE 1\",\n\t\t\"description\": \"Strong problem solving and analysing skills, DSA, OOPS, DBMS, OS\",\n\t\t\"location\": \"Hyderabad(India)\"\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"jobs"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5000/api/v1/jobs",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"jobs"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Candidate Signup",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"candidate1\",\n    \"email\": \"candidate1@gmail.com\",\n    \"password\": \"candidate1\",\n    \"phone\": \"9384855245\",\n    \"skills\": \"html, c++, js\",\n    \"role\": 3\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Recruiter can see all candidates that applied to a job",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNzNjYzhhYmEtMzBhMS00OTAzLWI2NmMtNjQzODBjMjkzY2U4Iiwicm9sZSI6MiwiaWF0IjoxNTk1MzkxMjQxfQ.QSevmyzgniYsuc7gURLcQJgLObh86tDhEKqvrGI7XDU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/3cffeeae-22df-4a44-92e9-e00561adb2d0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"3cffeeae-22df-4a44-92e9-e00561adb2d0"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5000/api/v1/candidates/signup",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"candidates",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Candidate Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"candidate1@gmail.com\",\n    \"password\": \"candidate1\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Recruiter can see posted jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjM2OTkxMmYtMTI0Yy00NDRmLWJhYjUtOTE0YjU2OTI5MjMzIiwicm9sZSI6MiwiaWF0IjoxNTk1NDA1MDc0fQ.5vnXwyLarSCSRHLdMwDL9D9r8HKm1Ph_-De6KHbfe_s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/recruiters/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"recruiters",
+								"jobs"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:5000/api/v1/candidates/login",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"candidates",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Candidate can see all jobs",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNjVmYWJmM2MtZDc5MC00ZmY2LThlZTItOTZjNjM4ZDBiOTI0Iiwicm9sZSI6MywiaWF0IjoxNTk1MzkxNTkzfQ.O9Ud-XR1EC7-a8CsfHTnME5uM0upK1hIlkOW6DMg8s4",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:5000/api/v1/jobs",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"jobs"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Candidate can apply to a job",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNjVmYWJmM2MtZDc5MC00ZmY2LThlZTItOTZjNjM4ZDBiOTI0Iiwicm9sZSI6MywiaWF0IjoxNTk1MzkxNTkzfQ.O9Ud-XR1EC7-a8CsfHTnME5uM0upK1hIlkOW6DMg8s4",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:5000/api/v1/jobs/apply/a418acb9-3c97-4f06-9a51-137984683976",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"jobs",
-						"apply",
-						"a418acb9-3c97-4f06-9a51-137984683976"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Recruiter can see all candidates that applied to a job",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNzNjYzhhYmEtMzBhMS00OTAzLWI2NmMtNjQzODBjMjkzY2U4Iiwicm9sZSI6MiwiaWF0IjoxNTk1MzkxMjQxfQ.QSevmyzgniYsuc7gURLcQJgLObh86tDhEKqvrGI7XDU",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/candidates/a418acb9-3c97-4f06-9a51-137984683976",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"candidates",
-						"a418acb9-3c97-4f06-9a51-137984683976"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "",
-							"disabled": true
+				{
+					"name": "Recruiter can delete a posted job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOWVmMGRjN2MtOGY0NS00YTk2LTg5N2ItNTgwYjM3MGI5YWRkIiwicm9sZSI6MiwiaWF0IjoxNTk1NDE0NTQ0fQ.nQyO8Ahw6iwG0IplW1jT_lZ_x0tonysjzw9QynbT4-0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/jobs/da3e06d1-437e-40c9-9c6e-c747bcd5c0c5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"jobs",
+								"da3e06d1-437e-40c9-9c6e-c747bcd5c0c5"
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Admin Signup",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"admin1\",\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"admin1\",\n    \"phone\": \"43624526\",\n    \"role\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Candidate",
+			"item": [
+				{
+					"name": "Candidate Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"candidate3\",\n    \"email\": \"candidate3@gmail.com\",\n    \"password\": \"candidate3\",\n    \"phone\": \"64562786245\",\n    \"skills\": \"java, spring\",\n    \"role\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"signup"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:5000/api/v1/admins/signup",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"admins",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"admin1\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Candidate Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"candidate2@gmail.com\",\n    \"password\": \"candidate2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:5000/api/v1/admins/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"admins",
-						"login"
-					]
+				{
+					"name": "Candidate can see available jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmJiZTUxNzQtOGFhOC00YTM0LThjYTktZGYwYTdjNWJhY2Q4Iiwicm9sZSI6MywiaWF0IjoxNTk1NDExNDUzfQ.WxhTg4yKlgKd68aF5f8y_qwM7o_tGnP8Y-_jg6H0MCw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidate can apply to a job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmJiZTUxNzQtOGFhOC00YTM0LThjYTktZGYwYTdjNWJhY2Q4Iiwicm9sZSI6MywiaWF0IjoxNTk1MzkzMzc2fQ.5koU1Stw64n0HtzDQCj3_1Y_x-LaEfdzHMo1wSrOprE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/jobs/apply/be9e6d4c-be8f-49a0-bf4c-b2c7886e81c5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"jobs",
+								"apply",
+								"be9e6d4c-be8f-49a0-bf4c-b2c7886e81c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidate can see applied jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmJiZTUxNzQtOGFhOC00YTM0LThjYTktZGYwYTdjNWJhY2Q4Iiwicm9sZSI6MywiaWF0IjoxNTk1NDAzNzQyfQ.oZ7MQYavhYeaiBR-KZpY2CoZ0lUutN9z0MVPm-Hs-Jk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/applied/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"applied",
+								"jobs"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Admin can see all recruiters",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/recruiters",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"recruiters"
-					]
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin1\",\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"admin1\",\n    \"phone\": \"43624526\",\n    \"role\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/admins/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"admins",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"admin1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/admins/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"admins",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can see all recruiters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/recruiters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"recruiters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can see all candidates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can see all jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1NDAzODI5fQ.IvQDqY1XSbrivlMJEnF_4SqEOD9JvAAQtzL2x-f_1tI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can see job candidates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1NDAzODI5fQ.IvQDqY1XSbrivlMJEnF_4SqEOD9JvAAQtzL2x-f_1tI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/be9e6d4c-be8f-49a0-bf4c-b2c7886e81c5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"be9e6d4c-be8f-49a0-bf4c-b2c7886e81c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can delete a candidate",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/candidates/65fabf3c-d790-4ff6-8ee2-96c638d0b924",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"candidates",
+								"65fabf3c-d790-4ff6-8ee2-96c638d0b924"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can delete a job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/jobs/b0068771-be90-4004-b9b2-542b871b50ff",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"jobs",
+								"b0068771-be90-4004-b9b2-542b871b50ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin can delete a recruiter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{apiVersion}}/recruiters/73cc8aba-30a1-4903-b66c-64380c293ce8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{apiVersion}}",
+								"recruiters",
+								"73cc8aba-30a1-4903-b66c-64380c293ce8"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin can see all candidates",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/candidates",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"candidates"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin can delete a candidate",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/candidates/65fabf3c-d790-4ff6-8ee2-96c638d0b924",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"candidates",
-						"65fabf3c-d790-4ff6-8ee2-96c638d0b924"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin can delete a job",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/jobs/b0068771-be90-4004-b9b2-542b871b50ff",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"jobs",
-						"b0068771-be90-4004-b9b2-542b871b50ff"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin can delete a recruiter",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNmFjNzg0NDUtY2MwNy00M2YxLTlhNDQtZTA5MjAzMGRlZWRlIiwicm9sZSI6MSwiaWF0IjoxNTk1MzkyMTg4fQ.DUgUI98VBTFq3I1HCd5vSrKLUDoKw4zUtOOql-ELNjs",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/recruiters/73cc8aba-30a1-4903-b66c-64380c293ce8",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"recruiters",
-						"73cc8aba-30a1-4903-b66c-64380c293ce8"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
