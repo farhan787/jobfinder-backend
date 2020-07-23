@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const helmet = require('helmet')
+const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
 const ErrorHandler = require('./errors/ErrorHandler');
@@ -18,7 +18,7 @@ db.authenticate()
 	.catch((err) => console.log('Error', err));
 
 const requestLimiter = rateLimit({
-	windowMs: 15 * 60 * 1000,
+	windowMs: 1 * 60 * 1000,
 	max: 100,
 });
 
