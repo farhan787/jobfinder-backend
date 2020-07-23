@@ -8,7 +8,7 @@ module.exports = {
 		await Admin.signup(admin);
 
 		const resData = ResponseTransformer.success(
-			ResponseCodes.success,
+			ResponseCodes.created,
 			{},
 			'Signup Successful'
 		);

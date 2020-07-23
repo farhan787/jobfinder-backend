@@ -40,7 +40,7 @@ module.exports = {
 		await Recruiter.signup(user);
 
 		const resData = ResponseTransformer.success(
-			ResponseCodes.success,
+			ResponseCodes.created,
 			{},
 			'Signup Successful'
 		);
