@@ -56,13 +56,13 @@ module.exports = {
 	},
 
 	signup: async (req, res) => {
-		const user = req.body;
-		await Candidate.signup(user);
+		const candidate = req.body;
+		const savedCandidate = await Candidate.signup(candidate);
 
 		const resData = ResponseTransformer.success(
 			ResponseCodes.created,
-			{},
-			'Signup Successful'
+			{ uuid: savedCandidate.uuid },
+			'created'
 		);
 		res.status(resData.code).send(resData);
 	},

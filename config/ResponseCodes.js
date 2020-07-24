@@ -3,6 +3,8 @@ module.exports = {
 	created: 201,
 	forbidden: 403,
 	internalServerError: 500,
-	success: 200,
 	notFound: 404,
+	success: 200,
+	unauthorized: 401,
+	unprocessableEntity: 422,
 };

@@ -8,20 +8,20 @@ module.exports = {
 	duplicateError: (entity) => {
 		return {
 			message: `${entity} already exist`,
-			status: ResponseCodes.badRequest,
+			status: ResponseCodes.forbidden,
+		};
+	},
+
+	forbidden: (message) => {
+		return {
+			message,
+			status: ResponseCodes.forbidden,
 		};
 	},
 
 	invalidRole: (correctRole) => {
 		return {
 			message: `invalid role: role should be ${correctRole}`,
-			status: ResponseCodes.badRequest,
-		};
-	},
-
-	invalidPassword: () => {
-		return {
-			message: `invalid password`,
 			status: ResponseCodes.badRequest,
 		};
 	},
@@ -37,6 +37,13 @@ module.exports = {
 		return {
 			message: `authToken is missing in request header`,
 			status: ResponseCodes.badRequest,
+		};
+	},
+
+	unauthorized: (message = 'unauthorized') => {
+		return {
+			message,
+			status: ResponseCodes.unauthorized,
 		};
 	},
 };

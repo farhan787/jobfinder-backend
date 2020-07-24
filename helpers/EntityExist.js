@@ -13,8 +13,8 @@ module.exports = {
 		});
 		if (!user) {
 			throw new ApplicationError(
-				Errors.notExist(email).message,
-				Errors.notExist(email).status
+				Errors.unauthorized('invalid credentials').message,
+				Errors.unauthorized().status
 			);
 		}
 
@@ -39,8 +39,8 @@ module.exports = {
 		});
 		if (!user) {
 			throw new ApplicationError(
-				Errors.notExist(uuid).message,
-				Errors.notExist(uuid).status
+				Errors.unauthorized('invalid credentials').message,
+				Errors.unauthorized().status
 			);
 		}
 		return user;
@@ -53,8 +53,8 @@ module.exports = {
 
 		if (jobApplication) {
 			throw new ApplicationError(
-				Errors.duplicateError('job application').message,
-				Errors.duplicateError().status
+				Errors.forbidden('already applied for the job').message,
+				Errors.forbidden().status
 			);
 		}
 	},

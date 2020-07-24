@@ -94,9 +94,9 @@ module.exports = {
 		);
 		job.recruiter_id = recruiterData.id;
 
-		await EntityExist.jobShouldNotExist(job);
-
 		JobValidators.jobPostData(job);
+
+		await EntityExist.jobShouldNotExist(job);
 		const savedJob = await JobModel.create(job);
 		return savedJob;
 	},

@@ -5,12 +5,12 @@ const ResponseTransformer = require('../transformers/response');
 module.exports = {
 	signup: async (req, res) => {
 		const admin = req.body;
-		await Admin.signup(admin);
+		const savedAdmin = await Admin.signup(admin);
 
 		const resData = ResponseTransformer.success(
 			ResponseCodes.created,
-			{},
-			'Signup Successful'
+			{ uuid: savedAdmin.uuid },
+			'created'
 		);
 		res.status(resData.code).send(resData);
 	},

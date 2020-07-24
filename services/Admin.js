@@ -31,6 +31,7 @@ module.exports = {
 		await EntityExist.userShouldNotExist(admin.email, UserRole.admin);
 
 		admin.password = await AuthHelper.hashPassword(admin.password);
-		await UserModel.create(admin);
+		const savedAdmin = await UserModel.create(admin);
+		return savedAdmin;
 	},
 };

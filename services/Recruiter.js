@@ -83,7 +83,8 @@ module.exports = {
 		await EntityExist.userShouldNotExist(recruiter.email, UserRole.recruiter);
 
 		recruiter.password = await AuthHelper.hashPassword(recruiter.password);
-		await UserModel.create(recruiter);
+		const savedRecruiter = await UserModel.create(recruiter);
+		return savedRecruiter;
 	},
 
 	login: async (loginCredentials) => {

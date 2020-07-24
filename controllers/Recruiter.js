@@ -36,13 +36,13 @@ module.exports = {
 	},
 
 	signup: async (req, res) => {
-		const user = req.body;
-		await Recruiter.signup(user);
+		const recruiter = req.body;
+		const savedRecruiter = await Recruiter.signup(recruiter);
 
 		const resData = ResponseTransformer.success(
 			ResponseCodes.created,
-			{},
-			'Signup Successful'
+			{ uuid: savedRecruiter.uuid },
+			'created'
 		);
 		res.status(resData.code).send(resData);
 	},

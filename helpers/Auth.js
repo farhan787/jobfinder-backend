@@ -31,8 +31,8 @@ module.exports = {
 			logger.log('info', `login failed for ${email}`);
 
 			throw new ApplicationError(
-				Errors.invalidPassword().message,
-				Errors.invalidPassword().status
+				Errors.unauthorized('invalid credentials').message,
+				Errors.unauthorized().status
 			);
 		}
 	},
