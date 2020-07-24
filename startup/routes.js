@@ -3,6 +3,7 @@ const Admin = require('../routes/Admin');
 const Candidate = require('../routes/Candidate');
 const Job = require('../routes/Job');
 const Recruiter = require('../routes/Recruiter');
+const ResponseCodes = require('../config/ResponseCodes');
 
 module.exports = function (app) {
 	app.use(express.json());
@@ -11,4 +12,8 @@ module.exports = function (app) {
 	app.use('/api/v1/candidates', Candidate);
 	app.use('/api/v1/jobs', Job);
 	app.use('/api/v1/recruiters', Recruiter);
+
+	app.use('/*', (req, res) => {
+		res.status(ResponseCodes.notFound).send('Not Found');
+	});
 };
