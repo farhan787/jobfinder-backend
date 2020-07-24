@@ -51,7 +51,7 @@ module.exports = {
 			{
 				job: _.pick(savedJob, ['uuid', 'title', 'description', 'location']),
 			},
-			'Job posted successfully'
+			'created'
 		);
 		res.status(resData.code).send(resData);
 	},
