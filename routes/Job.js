@@ -14,7 +14,11 @@ router.post(
 	[Auth, AllowAccess([UserRole.recruiter])],
 	asyncHandler(JobController.postJob)
 );
-router.post('/apply/:jobId', Auth, asyncHandler(JobController.applyToJob));
+router.post(
+	'/apply/:jobId',
+	[Auth, AllowAccess([UserRole.candidate])],
+	asyncHandler(JobController.applyToJob)
+);
 router.delete(
 	'/:jobId',
 	[Auth, AllowAccess([UserRole.admin, UserRole.recruiter])],

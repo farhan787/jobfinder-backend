@@ -68,7 +68,11 @@ module.exports = {
 			(application) => application.job_id
 		);
 		let appliedJobs = await JobModel.findAll({
-			where: { id: [appliedJobIds] },
+			where: {
+				id: {
+					[db.Sequelize.Op.in]: appliedJobIds,
+				},
+			},
 		});
 		appliedJobs = _.map(
 			appliedJobs,
