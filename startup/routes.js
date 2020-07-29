@@ -14,6 +14,12 @@ module.exports = function (app) {
 	app.use('/api/v1/recruiters', Recruiter);
 
 	app.use('/*', (req, res) => {
-		res.status(ResponseCodes.notFound).send('Not Found');
+		res.status(ResponseCodes.notFound).send({
+			success: false,
+			code: 404,
+			errors: {
+				message: 'Not Found',
+			},
+		});
 	});
 };

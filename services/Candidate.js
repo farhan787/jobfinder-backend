@@ -116,6 +116,10 @@ module.exports = {
 
 		await EntityExist.userShouldNotExist(candidate.email, UserRole.candidate);
 
+		if (candidate.phone) {
+			await EntityExist.phoneShouldNotExist(candidate.phone);
+		}
+
 		candidate.password = await AuthHelper.hashPassword(candidate.password);
 		const savedCandidate = await UserModel.create(candidate);
 		return savedCandidate;

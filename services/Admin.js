@@ -29,6 +29,9 @@ module.exports = {
 		userRoleValidator(admin.role, UserRole.admin);
 
 		await EntityExist.userShouldNotExist(admin.email, UserRole.admin);
+		if (admin.phone) {
+			await EntityExist.phoneShouldNotExist(admin.phone);
+		}
 
 		admin.password = await AuthHelper.hashPassword(admin.password);
 		const savedAdmin = await UserModel.create(admin);

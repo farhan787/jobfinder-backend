@@ -7,6 +7,18 @@ const JobModel = db.models.Job;
 const JobApplicationModel = db.models.JobApplication;
 
 module.exports = {
+	phoneShouldNotExist: async (phone) => {
+		const user = await UserModel.findOne({
+			where: { phone },
+		});
+		if (user) {
+			throw new ApplicationError(
+				Errors.duplicateError(phone).message,
+				Errors.duplicateError(phone).status
+			);
+		}
+	},
+
 	userShouldExist: async (email, role) => {
 		const user = await UserModel.findOne({
 			where: { email, role },

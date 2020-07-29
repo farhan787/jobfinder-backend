@@ -81,6 +81,9 @@ module.exports = {
 		userRoleValidator(recruiter.role, UserRole.recruiter);
 
 		await EntityExist.userShouldNotExist(recruiter.email, UserRole.recruiter);
+		if (recruiter.phone) {
+			await EntityExist.phoneShouldNotExist(recruiter.phone);
+		}
 
 		recruiter.password = await AuthHelper.hashPassword(recruiter.password);
 		const savedRecruiter = await UserModel.create(recruiter);
