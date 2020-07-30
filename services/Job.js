@@ -5,7 +5,9 @@ const JobValidators = require('../validators/JobValidators');
 const EntityExist = require('../helpers/EntityExist');
 const paginationHelper = require('../helpers/PaginationHelper');
 const UserRole = require('../config/UserRole');
+const { mailCandidateAndRecruiter } = require('./Email');
 
+const UserModel = db.models.User;
 const JobModel = db.models.Job;
 const JobApplication = db.models.JobApplication;
 
@@ -26,6 +28,14 @@ module.exports = {
 			candidateData.id
 		);
 		await JobApplication.create(application);
+
+		const recruiterData = await UserModel.findOne({
+			where: {
+				id: jobData.recruiter_id,
+				role: UserRole.recruiter,
+			},
+		});
+		await mailCandidateAndRecruiter(candidateData, recruiterData, jobData);
 	},
 
 	deleteJob: async (jobUUID, user) => {
