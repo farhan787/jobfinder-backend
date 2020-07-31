@@ -34,6 +34,16 @@ module.exports = {
 		res.status(resData.code).send(resData);
 	},
 
+	getCandidateJobs: async (req, res) => {
+		const candidateId = req.params.candidateId;
+		const candidateJobs = await Candidate.getAppliedJobs(candidateId);
+		const resData = ResponseTransformer.success(
+			ResponseCodes.success,
+			candidateJobs
+		);
+		res.status(resData.code).send(resData);
+	},
+
 	getCandidates: async (req, res) => {
 		const { page, limit } = req.query;
 

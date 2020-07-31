@@ -33,6 +33,12 @@ router.get(
 	asyncHandler(CandidateController.getAppliedJobs)
 );
 
+router.get(
+	'/:candidateId/jobs',
+	[Auth, AllowAccess([UserRole.admin])],
+	asyncHandler(CandidateController.getCandidateJobs)
+);
+
 router.delete(
 	'/:candidateId',
 	[Auth, AllowAccess([UserRole.admin])],
