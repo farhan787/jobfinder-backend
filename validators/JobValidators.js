@@ -40,9 +40,9 @@ module.exports = {
 					ResponseCodes.unprocessableEntity
 				);
 			}
-			if (description.length > 50) {
+			if (description.length > 150) {
 				throw new ApplicationError(
-					'description should be maximum of length 50',
+					'description should be maximum of length 150',
 					ResponseCodes.unprocessableEntity
 				);
 			}
