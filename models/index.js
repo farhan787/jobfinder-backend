@@ -6,9 +6,7 @@ const JobModel = require('./Job');
 const JobApplicationModel = require('./JobApplication');
 
 const sequelize = new Sequelize(
-	DB_CONFIG.database,
-	DB_CONFIG.userName,
-	DB_CONFIG.password,
+	DB_CONFIG.connectionUri,
 	{
 		host: { DB_CONFIG },
 		dialect: DB_CONFIG.dialect,

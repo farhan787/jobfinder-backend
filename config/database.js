@@ -4,6 +4,7 @@ const DB_CONFIG = {
 	password: process.env.password,
 	host: process.env.host,
 	dialect: process.env.dialect,
+	connectionUri: process.env.dbConnectionUri
 };
 
 module.exports = DB_CONFIG;
