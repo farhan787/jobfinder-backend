@@ -29,6 +29,9 @@ module.exports = {
 			where: {
 				id: { [db.Sequelize.Op.notIn]: jobApplicationIds },
 			},
+			order: [
+				['createdAt', 'DESC']
+			]
 		});
 		return availableJobs;
 	},
@@ -88,6 +91,9 @@ module.exports = {
 			where: { role: UserRole.candidate },
 			limit,
 			offset,
+			order: [
+				['createdAt', 'DESC']
+			]
 		});
 		candidates = _.map(
 			candidates,

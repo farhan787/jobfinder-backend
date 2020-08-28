@@ -53,6 +53,9 @@ module.exports = {
 		);
 		let postedJobs = await JobModel.findAll({
 			where: { recruiter_id: recruiterData.id },
+			order: [
+				['createdAt', 'DESC']
+			]
 		});
 		postedJobs = _.map(
 			postedJobs,
@@ -68,6 +71,9 @@ module.exports = {
 			where: { role: UserRole.recruiter },
 			limit,
 			offset,
+			order: [
+				['createdAt', 'DESC']
+			]
 		});
 		recruiters = _.map(
 			recruiters,

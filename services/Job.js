@@ -89,7 +89,13 @@ module.exports = {
 	getAllJobs: async (paginationData) => {
 		const { limit, offset } = paginationHelper(paginationData);
 
-		let jobs = await JobModel.findAll({ limit, offset });
+		let jobs = await JobModel.findAll({
+			limit,
+			offset,
+			order: [
+				['createdAt', 'DESC']
+			]
+		});
 		jobs = _.map(
 			jobs,
 			_.partialRight(_.pick, ['uuid', 'title', 'description', 'location'])
