@@ -16,10 +16,17 @@ async function mailCandidate(candidate, job) {
 		from,
 		to: candidate.email,
 		subject: 'Job Application Succesful',
-		text: `Hi ${candidate.name},
-		
-		We are pleased to inform you that your job application for role "${job.title}" has been successfully applied. Recruiter will contact you in few days if your profile match the job requirements.
-		`,
+		text: 
+`
+Hi ${candidate.name},
+
+We are pleased to inform you that your job application for role "${job.title}" has been successfully applied.
+
+Recruiter will contact you in few days if your profile match the job requirements.
+
+Thank you!
+The Recruiting Team at JobFinder
+`,
 	});
 }
 
@@ -28,10 +35,17 @@ async function mailRecruiter(recruiter, candidate, job) {
 		from,
 		to: recruiter.email,
 		subject: 'New candidate application',
-		text: `Hi ${recruiter.name},
+		text: 
+`
+Hi ${recruiter.name},
 
-		A new candidate "${candidate.name}" has applied to your job with title "${job.title}". kindly checkout your dashboard to take an action.
-		`,
+A new candidate "${candidate.name}" has applied to your job with title "${job.title}". 
+
+kindly checkout your dashboard to take an action.
+
+Thank you!
+The Recruiting Team at JobFinder
+`,
 	});
 }
 
